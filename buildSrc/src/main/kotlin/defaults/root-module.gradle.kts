@@ -10,11 +10,6 @@ allprojects {
     }
 }
 
-try {
-    tasks {
-        "clean" {
-            delete(buildDir)
-        }
-    }
-} catch (e: Exception) {
+task<Delete>("clean") {
+    delete(rootProject.buildDir)
 }

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="unox-core-jvm">
-    <output-path>C:\Projetos\UNox\_staging\unox-core\build\libs</output-path>
+    <output-path>$PROJECT_DIR$/build/libs</output-path>
     <root id="archive" name="unox-core-jvm.jar">
       <element id="module-output" name="unox-core.jvmMain" />
     </root>

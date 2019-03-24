@@ -1,9 +1,7 @@
 rootProject.name = "unox-core"
 
 listOf(
-        ":common",
-        ":js",
-        ":jvm"
+        "shared"
 ).forEach(::include)
 
 pluginManagement {
