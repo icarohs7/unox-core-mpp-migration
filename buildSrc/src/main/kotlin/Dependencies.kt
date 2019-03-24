@@ -1,5 +1,9 @@
 @file:Suppress("PublicApiImplicitType", "MemberVisibilityCanBePrivate", "unused")
 
+object CommonDeps {
+    const val coroutinesCoreCommon = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.coroutines}"
+}
+
 object Deps {
     const val arrowCore = "io.arrow-kt:arrow-core:${Versions.arrow}"
     const val arrowData = "io.arrow-kt:arrow-data:${Versions.arrow}"

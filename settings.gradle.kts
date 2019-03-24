@@ -1,15 +1,30 @@
 rootProject.name = "unox-core"
 
 listOf(
-        "shared"
+        "shared",
+        "js",
+        "jvm",
+        "android"
 ).forEach(::include)
 
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id.startsWith("org.jetbrains.kotlin.")) {
+            val conditions = listOf(
+                    requested.id.id.startsWith("org.jetbrains.kotlin."),
+                    requested.id.id == "kotlin2js"
+            )
+
+            if (conditions.any { it })
                 useVersion(Versions.kotlin)
-            }
+
+            if (requested.id.id == "kotlin2js")
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        }
+
+        repositories {
+            google()
+            jcenter()
         }
     }
 }

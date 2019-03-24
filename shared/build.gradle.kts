@@ -1,37 +1,69 @@
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+@file:Suppress("UNUSED_VARIABLE")
 
 plugins {
     kotlin("multiplatform")
+    id("com.android.library")
+}
+
+android {
+    compileSdkVersion(Versions.androidSdk)
+    defaultConfig {
+        minSdkVersion(Versions.androidMinSdk)
+        targetSdkVersion(Versions.androidSdk)
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 kotlin {
-    jvm()
     js()
+    jvm()
+    android()
 
     sourceSets {
-        get("commonMain") {
+        val commonMain by getting {
             dependencies {
-                api(kotlin("stdlib-common"))
+                implementation(kotlin("stdlib-common"))
+                api(CommonDeps.coroutinesCoreCommon)
             }
         }
 
-        get("jsMain") {
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+            }
+        }
+
+        val jsMain by getting {
             dependencies {
                 api(kotlin("stdlib-js"))
             }
         }
 
-        get("jvmMain") {
+        val jvmMain by getting {
             dependencies {
                 api(kotlin("stdlib-jdk7"))
             }
         }
-    }
-}
 
-fun NamedDomainObjectContainer<KotlinSourceSet>.get(
-        sourceSetName: String,
-        action: Action<KotlinSourceSet>
-): KotlinSourceSet {
-    return getByName(sourceSetName, action)
+        val jvmTest by getting {
+            dependencies {
+                TestDeps.core.forEach(::api)
+            }
+        }
+
+        val androidMain by getting {
+            dependsOn(jvmMain)
+            dependencies {
+                api(AndroidDeps.coroutinesAndroid)
+            }
+        }
+
+        val androidTest by getting {
+            dependsOn(jvmTest)
+        }
+    }
 }
