@@ -10,8 +10,11 @@ allprojects {
     }
 }
 
-tasks {
-    "clean" {
-        delete(buildDir)
+try {
+    tasks {
+        "clean" {
+            delete(buildDir)
+        }
     }
+} catch (e: Exception) {
 }
