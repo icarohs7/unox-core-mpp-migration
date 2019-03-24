@@ -11,8 +11,6 @@ fun AndroidBlock.defaultAndroidLibrarySettings() {
         targetSdkVersion(Versions.androidSdk)
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArguments = mapOf("clearPackageData" to "true")
     }
 
     buildTypes {
@@ -31,7 +29,6 @@ fun AndroidBlock.defaultAndroidLibrarySettings() {
     }
 
     testOptions {
-        execution = "ANDROIDX_TEST_ORCHESTRATOR"
         unitTests.apply {
             isIncludeAndroidResources = true
             isReturnDefaultValues = true
