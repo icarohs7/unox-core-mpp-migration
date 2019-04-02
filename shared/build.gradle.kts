@@ -2,25 +2,11 @@
 
 plugins {
     kotlin("multiplatform")
-    id("com.android.library")
-}
-
-android {
-    compileSdkVersion(Versions.androidSdk)
-    defaultConfig {
-        minSdkVersion(Versions.androidMinSdk)
-        targetSdkVersion(Versions.androidSdk)
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
 kotlin {
     js()
     jvm()
-    android()
 
     sourceSets {
         val commonMain by getting {
@@ -46,6 +32,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 api(kotlin("stdlib-jdk7"))
+                api(Deps.coroutinesRx2)
             }
         }
 
@@ -53,17 +40,6 @@ kotlin {
             dependencies {
                 TestDeps.core.forEach(::api)
             }
-        }
-
-        val androidMain by getting {
-            dependsOn(jvmMain)
-            dependencies {
-                api(AndroidDeps.coroutinesAndroid)
-            }
-        }
-
-        val androidTest by getting {
-            dependsOn(jvmTest)
         }
     }
 }

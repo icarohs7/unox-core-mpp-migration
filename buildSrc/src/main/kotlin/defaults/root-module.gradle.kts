@@ -2,10 +2,11 @@ package defaults
 
 allprojects {
     repositories {
-        maven("https://kotlin.bintray.com/kotlinx")
         google()
+        maven("http://devrepo.kakao.com:8088/nexus/content/groups/public/")
         maven("https://jitpack.io")
         maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        maven("https://kotlin.bintray.com/kotlinx")
         jcenter()
     }
 }

@@ -1,11 +1,9 @@
 rootProject.name = "unox-core"
 
-listOf(
-        "shared",
-        "js",
-        "jvm",
-        "android"
-).forEach(::include)
+include(":shared")
+include(":js")
+include(":jvm")
+include(":android")
 
 pluginManagement {
     resolutionStrategy {
@@ -28,3 +26,5 @@ pluginManagement {
         }
     }
 }
+
+enableFeaturePreview("GRADLE_METADATA")

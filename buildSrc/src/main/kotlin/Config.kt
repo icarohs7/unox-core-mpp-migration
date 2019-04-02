@@ -1,14 +1,15 @@
 import org.gradle.api.JavaVersion
-import com.android.build.gradle.LibraryExtension as AndroidBlock
-import org.gradle.api.artifacts.dsl.RepositoryHandler as RepositoriesBlock
-import org.gradle.kotlin.dsl.ScriptHandlerScope as BuildscriptBlock
+import com.android.build.gradle.TestedExtension as AndroidBlock
+import org.gradle.api.artifacts.dsl.DependencyHandler as DependenciesBlock
+import org.gradle.kotlin.dsl.PluginDependenciesSpecScope as PluginsBlock
 
-fun AndroidBlock.defaultAndroidLibrarySettings() {
-    compileSdkVersion(Versions.androidSdk)
+fun AndroidBlock.defaultSettings() {
+    compileSdkVersion(28)
 
     defaultConfig {
-        minSdkVersion(Versions.androidMinSdk)
-        targetSdkVersion(Versions.androidSdk)
+        minSdkVersion(21)
+        targetSdkVersion(28)
+        testInstrumentationRunnerArguments.plusAssign("clearPackageData" to "true")
         versionCode = 1
         versionName = "1.0"
     }
@@ -16,6 +17,7 @@ fun AndroidBlock.defaultAndroidLibrarySettings() {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
 
@@ -29,6 +31,7 @@ fun AndroidBlock.defaultAndroidLibrarySettings() {
     }
 
     testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
         unitTests.apply {
             isIncludeAndroidResources = true
             isReturnDefaultValues = true
