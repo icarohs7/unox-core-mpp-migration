@@ -43,14 +43,14 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                api(kotlin("test-common"))
-                api(kotlin("test-annotations-common"))
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                api(kotlin("stdlib-jdk7"))
+                api(Deps.kotlinStdLib)
                 api(Deps.arrowCore)
                 api(Deps.arrowEffects)
                 api(Deps.coroutinesRx2)
@@ -61,8 +61,8 @@ kotlin {
 
         val jvmTest by getting {
             dependencies {
-                api(kotlin("test-junit"))
-                TestDeps.core.forEach(::api)
+                implementation(kotlin("test-junit"))
+                TestDeps.core.forEach(::implementation)
             }
         }
 
@@ -81,19 +81,23 @@ kotlin {
         }
 
         val androidTest by getting {
-            dependsOn(jvmTest)
             dependsOn(androidMain)
             dependencies {
-                api(kotlin("test-junit"))
-                TestDeps.androidCore.forEach(::api)
+                implementation(kotlin("test-junit"))
+                TestDeps.androidCore.forEach {
+                    implementation(it) {
+                        exclude(group = "org.apache.maven")
+                    }
+                }
             }
         }
 
         val pattern = Regex("(.*)android(.*)[tT]est(.*)")
         forEach { sourceSet ->
-            if (sourceSet.name == "androidTest") return@forEach
-            if (sourceSet.name.matches(pattern))
-                sourceSet.dependsOn(androidTest)
+            when {
+                sourceSet.name == "androidTest" -> return@forEach
+                sourceSet.name.matches(pattern) -> sourceSet.dependsOn(androidTest)
+            }
         }
 
         val jsMain by getting {
@@ -105,7 +109,7 @@ kotlin {
 
         val jsTest by getting {
             dependencies {
-                api(kotlin("test-js"))
+                implementation(kotlin("test-js"))
             }
         }
     }

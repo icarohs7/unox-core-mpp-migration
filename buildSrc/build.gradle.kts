@@ -8,7 +8,6 @@ dependencies {
     val navigationVersion = "2.0.0"
     val googleServicesVersion = "4.2.0"
 
-    compileOnly(gradleApi())
     implementation("com.android.tools.build:gradle:$gradlePluginVersion")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
