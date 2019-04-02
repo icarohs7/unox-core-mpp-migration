@@ -2,11 +2,28 @@
 
 plugins {
     kotlin("multiplatform")
+    id("com.android.library")
+//    id("com.github.dcendents.android-maven") version "2.1"
+    id("jacoco")
+    defaults.`android-module`
+}
+
+android {
+    defaultSettings()
+    dataBinding {
+        isEnabled = false
+    }
+    buildTypes {
+        getByName("debug") {
+            isTestCoverageEnabled = true
+        }
+    }
 }
 
 kotlin {
     jvm()
     js()
+    android()
 
     sourceSets {
         val commonMain by getting {
@@ -38,6 +55,27 @@ kotlin {
             dependencies {
                 api(kotlin("test-junit"))
                 TestDeps.core.forEach(::api)
+            }
+        }
+
+        val androidMain by getting {
+            dependsOn(jvmMain)
+            dependencies {
+                api(AndroidDeps.appCompat)
+                api(AndroidDeps.coreKtx)
+                api(AndroidDeps.coroutinesAndroid)
+                api(AndroidDeps.disposer)
+                api(AndroidDeps.lifecycleExtensions)
+                api(AndroidDeps.lives)
+                api(AndroidDeps.rxAndroid)
+                api(AndroidDeps.timber)
+            }
+        }
+
+        val androidTest by getting {
+            dependsOn(jvmTest)
+            dependencies {
+                TestDeps.androidCore.forEach(::api)
             }
         }
 
