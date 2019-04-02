@@ -2,8 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="unox-core.js.main" target="1.8" />
+      <module name="unox-core.js.test" target="1.8" />
       <module name="unox-core.jvm.jvmMain" target="1.6" />
       <module name="unox-core.jvm.jvmTest" target="1.6" />
+      <module name="unox-core.jvm.main" target="1.8" />
+      <module name="unox-core.jvm.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
