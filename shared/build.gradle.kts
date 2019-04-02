@@ -26,7 +26,11 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 api(kotlin("stdlib-jdk7"))
+                api(Deps.arrowCore)
+                api(Deps.arrowEffects)
                 api(Deps.coroutinesRx2)
+                api(Deps.rxKotlin)
+                api(Deps.rxRelay)
             }
         }
 
@@ -40,6 +44,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 api(kotlin("stdlib-js"))
+                api(JSDeps.coroutinesJs)
             }
         }
 

@@ -262,6 +262,10 @@ object AndroidTestDeps {
     const val testOrchestrator = "androidx.test:orchestrator:${Versions.testRules}"
 }
 
+object JSDeps {
+    const val coroutinesJs = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
+}
+
 object Versions {
     const val androidSpeedDial = "2.0.1"
     const val androidxcore = "1.0.1"
