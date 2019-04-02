@@ -11,7 +11,7 @@ class MutableLazyKtTest {
     }
 
     @Test
-    fun `should initialize mutable property lazily`() {
+    fun should_initialize_mutable_property_lazily() {
         flag1 shouldEqual 0
         prop1 shouldEqual 20
         flag1 shouldEqual 10

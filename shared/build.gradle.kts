@@ -5,8 +5,8 @@ plugins {
 }
 
 kotlin {
-    js()
     jvm()
+    js()
 
     sourceSets {
         val commonMain by getting {
@@ -18,14 +18,8 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
-        }
-
-        val jsMain by getting {
-            dependencies {
-                api(kotlin("stdlib-js"))
+                api(kotlin("test-common"))
+                api(kotlin("test-annotations-common"))
             }
         }
 
@@ -38,7 +32,20 @@ kotlin {
 
         val jvmTest by getting {
             dependencies {
+                api(kotlin("test-junit"))
                 TestDeps.core.forEach(::api)
+            }
+        }
+
+        val jsMain by getting {
+            dependencies {
+                api(kotlin("stdlib-js"))
+            }
+        }
+
+        val jsTest by getting {
+            dependencies {
+                api(kotlin("test-js"))
             }
         }
     }
