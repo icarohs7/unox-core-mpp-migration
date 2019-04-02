@@ -11,7 +11,7 @@ import se.lovef.assert.v1.shouldEqual
 @RunWith(RobolectricTestRunner::class)
 class LiveDataDelegateKtTest {
     @Test
-    fun `should delegate get operations on livedata`() {
+    fun should_delegate_get_operations_on_livedata() {
         runBlocking {
             //Given
             val d1 by Eg.ld1
@@ -26,7 +26,7 @@ class LiveDataDelegateKtTest {
     }
 
     @Test
-    fun `should delegate set operations on livedata`() {
+    fun should_delegate_set_operations_on_livedata() {
         runBlocking {
             //Given
             var d1: Int? by Eg.ld1
@@ -49,7 +49,7 @@ class LiveDataDelegateKtTest {
     }
 
     @Test
-    fun `should delegate get operations on livedata in a nullsafe way`() {
+    fun should_delegate_get_operations_on_livedata_in_a_nullsafe_way() {
         runBlocking {
             //Given
             val d1 by Eg.ld1.nonNullDelegate(0)
@@ -72,7 +72,7 @@ class LiveDataDelegateKtTest {
     }
 
     @Test
-    fun `should delegate set operations on livedata in a nullsafe way`() {
+    fun should_delegate_set_operations_on_livedata_in_a_nullsafe_way() {
         runBlocking {
             //Given
             var d1: Int by Eg.ld1.nonNullDelegate(0)

@@ -9,10 +9,18 @@ plugins {
 }
 
 android {
+    sourceSets["main"].java.srcDir("src/androidMain/kotlin")
+    sourceSets["main"].java.srcDir("src/main/kotlin")
+
+    sourceSets["test"].java.srcDir("src/androidTest/kotlin")
+    sourceSets["test"].java.srcDir("src/test/kotlin")
+
     defaultSettings()
+
     dataBinding {
         isEnabled = false
     }
+
     buildTypes {
         getByName("debug") {
             isTestCoverageEnabled = true
@@ -74,9 +82,18 @@ kotlin {
 
         val androidTest by getting {
             dependsOn(jvmTest)
+            dependsOn(androidMain)
             dependencies {
+                api(kotlin("test-junit"))
                 TestDeps.androidCore.forEach(::api)
             }
+        }
+
+        val pattern = Regex("(.*)android(.*)[tT]est(.*)")
+        forEach { sourceSet ->
+            if (sourceSet.name == "androidTest") return@forEach
+            if (sourceSet.name.matches(pattern))
+                sourceSet.dependsOn(androidTest)
         }
 
         val jsMain by getting {
