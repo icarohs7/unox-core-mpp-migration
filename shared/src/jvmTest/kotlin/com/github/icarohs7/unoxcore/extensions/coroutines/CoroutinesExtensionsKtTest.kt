@@ -1,14 +1,5 @@
-package com.github.icarohs7.unoxcore.coroutines
+package com.github.icarohs7.unoxcore.extensions.coroutines
 
-import com.github.icarohs7.unoxcore.extensions.coroutines.cancelCoroutineScope
-import com.github.icarohs7.unoxcore.extensions.coroutines.dispatcher
-import com.github.icarohs7.unoxcore.extensions.coroutines.forEach
-import com.github.icarohs7.unoxcore.extensions.coroutines.job
-import com.github.icarohs7.unoxcore.extensions.coroutines.parallelFilter
-import com.github.icarohs7.unoxcore.extensions.coroutines.parallelMap
-import com.github.icarohs7.unoxcore.extensions.coroutines.parallelPair
-import com.github.icarohs7.unoxcore.extensions.coroutines.parallelRun
-import com.github.icarohs7.unoxcore.extensions.coroutines.parallelTriple
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
