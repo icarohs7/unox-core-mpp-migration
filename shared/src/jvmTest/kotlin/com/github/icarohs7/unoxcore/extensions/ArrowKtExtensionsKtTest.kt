@@ -20,7 +20,7 @@ import se.lovef.assert.v1.shouldEqual
 class ArrowKtExtensionsKtTest {
 
     @Test
-    fun `convert nullable value to Try`() {
+    fun convert_nullable_value_to_Try() {
         //Given
         val v1: String? = null
         val v2: String? = "Omai wa mou shindeiru"
@@ -43,7 +43,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should map option removing treating null returns`() {
+    fun should_map_option_removing_treating_null_returns() {
         //Given
         val o1 = Some(1)
         val o2 = Some(2)
@@ -60,7 +60,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should map value to option removing nullability`() {
+    fun should_map_value_to_option_removing_nullability() {
         //Given
         val v1: Int? = 10
         val v2: Int? = null
@@ -77,7 +77,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `first of wrapped list`() {
+    fun first_of_wrapped_list() {
         val l1 = listOf(1, 2, 3).success()
         val l2 = listOf(1, 2, 3).some()
         val l3 = emptyList<Int>().success()
@@ -91,7 +91,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `try string or empty value`() {
+    fun try_string_or_empty_value() {
         //Given
         val t1 = Try { "Omai wa mou shindeiru!" }
         val t2 = Try { throw Exception("wat") }
@@ -107,7 +107,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should map cathing exceptions thrown`() {
+    fun should_map_cathing_exceptions_thrown() {
         //Given
         val t1 = Try { 1 }
         val t2 = Try { "hi" }
@@ -120,7 +120,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `get option string or empty`() {
+    fun get_option_string_or_empty() {
         //Given
         val o1: String? = "Omai wa mou shindeiru!"
         val o2: String? = null
@@ -136,7 +136,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `get option list or empty`() {
+    fun get_option_list_or_empty() {
         //Given
         val l1 = Some(listOf(1, 2, 3))
         val l2 = Option.empty<List<Int>>()
@@ -152,7 +152,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `try or throw`() {
+    fun try_or_throw() {
         //Given
         val t1 = Try { 1532 }
         val t2 = Try { "Omai wa mou shindeiru" }
@@ -168,7 +168,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should remove nullability from option`() {
+    fun should_remove_nullability_from_option() {
         //Given
         val o1 = Some<Int?>(10)
         val o2 = Some<Int?>(null)
@@ -184,7 +184,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should map not null values`() {
+    fun should_map_not_null_values() {
         //Given
         val o1 = Some<Int?>(10)
         val o2 = Some<Int?>(null)
@@ -200,7 +200,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should return the list inside a try or empty list`() {
+    fun should_return_the_list_inside_a_try_or_empty_list() {
         //Given
         val l1 = Try { listOf(1, 2, 3) }
         val l2 = Try { listOf(4, 5, 6) }
@@ -218,7 +218,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `nullMap test`() {
+    fun nullMap_test() {
         //Given
         val o1 = 5.optionMap { 1532 }
         val o2 = (null as? Int?).optionMap { 10 }
@@ -236,7 +236,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `optionMap test`() {
+    fun optionMap_test() {
         //Given
         val v1: Int? = 10
         val v2: Int? = null
@@ -259,7 +259,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `unwrap list of typeclasses containing only valid values`() {
+    fun unwrap_list_of_typeclasses_containing_only_valid_values() {
         //Given
         val t1: List<Success<Int?>> = listOf(1, 2, 3, null, 5, 6, null, 8, 9).map(::Success)
         val t2: List<Success<String?>> = listOf("a", "b", null, "d", "e").map(::Success)
@@ -281,7 +281,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should convert an IO instance to Try`() {
+    fun should_convert_an_IO_instance_to_Try() {
         val io1 = IO.just(10).tryIO()
         val res1 = Try.just(10)
         io1 shouldEqual res1
@@ -307,7 +307,7 @@ class ArrowKtExtensionsKtTest {
     }
 
     @Test
-    fun `should get an IO value or a default`() {
+    fun should_get_an_IO_value_or_a_default() {
         val i1 = IO { throw Exception() }
         val r1 = i1.syncGetOr(10)
         r1 shouldEqual 10

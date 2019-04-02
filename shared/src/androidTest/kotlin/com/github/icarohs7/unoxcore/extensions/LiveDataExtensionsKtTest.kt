@@ -20,7 +20,7 @@ import se.lovef.assert.v1.shouldEqual
 @Config(application = TestApplication::class)
 class LiveDataExtensionsKtTest {
     @Test
-    fun `should return livedata value or fallback`(): Unit = runBlocking<Unit> {
+    fun should_return_livedata_value_or_fallback(): Unit = runBlocking<Unit> {
         UnoxCore.foregroundDispatcher = Dispatchers.Main
         val l1 = MutableLiveData<String>()
         l1.value shouldEqual null
@@ -37,7 +37,7 @@ class LiveDataExtensionsKtTest {
     }
 
     @Test
-    fun `should observe live data with lambda and non nullable value`() {
+    fun should_observe_live_data_with_lambda_and_non_nullable_value() {
         val activity = Robolectric.setupActivity(AppCompatActivity::class.java)
         var count = 0
         var lastValue = ""

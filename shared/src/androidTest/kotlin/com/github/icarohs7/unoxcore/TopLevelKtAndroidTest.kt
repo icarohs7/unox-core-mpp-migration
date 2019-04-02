@@ -16,7 +16,7 @@ import se.lovef.assert.v1.shouldNotEqual
 @RunWith(RobolectricTestRunner::class)
 class TopLevelKtAndroidTest {
     @Test
-    fun `should switch to main thread if not already on it and run operation`(): Unit = runBlocking<Unit> {
+    fun should_switch_to_main_thread_if_not_already_on_it_and_run_operation(): Unit = runBlocking<Unit> {
         UnoxCore.foregroundDispatcher = Dispatchers.Main
         var check1Done = false
         var check2Done = false

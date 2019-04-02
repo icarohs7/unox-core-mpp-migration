@@ -19,7 +19,7 @@ import se.lovef.assert.v1.shouldEqual
 class RxJavaExtensionsKtAndroidTest {
 
     @Test
-    fun `should observe flowable using lifecycle - onNext`() {
+    fun should_observe_flowable_using_lifecycle__onNext() {
         var c = 0
         var latest = 0
         testFlowableOnActivity<Int>({ c++;latest = it }, actions = listOf(act { onNext(10) }, act { onNext(20) }))
@@ -29,7 +29,7 @@ class RxJavaExtensionsKtAndroidTest {
     }
 
     @Test
-    fun `should observe flowable using lifecycle - onNext + onError`() {
+    fun should_observe_flowable_using_lifecycle__onNext__onError() {
         var c = 0
         var latest = 0
         var e = 0
@@ -60,7 +60,7 @@ class RxJavaExtensionsKtAndroidTest {
     }
 
     @Test
-    fun `should observe flowable using lifecycle - onNext + onError + onComplete`() {
+    fun should_observe_flowable_using_lifecycle__onNext__onError__onComplete() {
         var c = 0
         var latest = 0
         var e = 0

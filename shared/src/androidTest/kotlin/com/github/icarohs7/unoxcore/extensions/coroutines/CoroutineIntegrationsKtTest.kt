@@ -17,7 +17,7 @@ import se.lovef.assert.v1.shouldEqual
 @RunWith(RobolectricTestRunner::class)
 class CoroutineIntegrationsKtTest {
     @Test
-    fun `should receive broadcasts using receive channel`() {
+    fun should_receive_broadcasts_using_receive_channel() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         var expected = "0"
         runBlocking {
@@ -41,7 +41,7 @@ class CoroutineIntegrationsKtTest {
     }
 
     @Test
-    fun `should await broadcast`() {
+    fun should_await_broadcast() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         runBlocking {
             val job = async {

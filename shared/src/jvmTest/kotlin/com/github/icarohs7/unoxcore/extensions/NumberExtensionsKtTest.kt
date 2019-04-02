@@ -8,7 +8,7 @@ import java.util.Locale
 
 class NumberExtensionsKtTest {
     @Test
-    fun `use fallback if number is zero or less`() {
+    fun use_fallback_if_number_is_zero_or_less() {
         val n1 = 1532
         val f1 = 20
         n1.ifZeroOrLess(f1) shouldEqual 1532
@@ -43,7 +43,7 @@ class NumberExtensionsKtTest {
     }
 
     @Test
-    fun `should convert double number to currency form`() {
+    fun should_convert_double_number_to_currency_form() {
         Locale.setDefault(Locale.US)
         val n1 = 15.32
         val c1 = "$15.32"
@@ -71,7 +71,7 @@ class NumberExtensionsKtTest {
     }
 
     @Test
-    fun `return number value or zero if null`() {
+    fun return_number_value_or_zero_if_null() {
         val n1: Int? = 15
         val r1: Int = n1.orZero()
         r1 shouldEqual 15

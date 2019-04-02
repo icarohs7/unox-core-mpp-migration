@@ -8,7 +8,7 @@ import se.lovef.assert.v1.throws
 
 class TopLevelKtTest {
     @Test
-    fun `should invoke side effect functions`() {
+    fun should_invoke_side_effect_functions() {
         var v1 = 0
         val r1 = sideEffect { v1 = 10; v1 }
         v1 shouldEqual 10
@@ -19,7 +19,7 @@ class TopLevelKtTest {
     }
 
     @Test
-    fun `should invoke side effect functions on background coroutine`() {
+    fun should_invoke_side_effect_functions_on_background_coroutine() {
         runBlocking {
             var v1 = 0
             val r1 = sideEffectBg { v1 = 10; v1 }

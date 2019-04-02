@@ -18,7 +18,7 @@ import kotlin.system.measureTimeMillis
 
 class CoroutinesExtensionsKtTest {
     @Test
-    fun `should run operations on background`(): Unit = runBlocking {
+    fun should_run_operations_on_background(): Unit = runBlocking {
         withContext(Dispatchers.Default) {
             coroutineContext.dispatcher shouldEqual Dispatchers.Default
 
@@ -50,7 +50,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should run operations on foreground`(): Unit = runBlocking {
+    fun should_run_operations_on_foreground(): Unit = runBlocking {
         withContext(Dispatchers.Default) {
             coroutineContext.dispatcher shouldEqual Dispatchers.Default
 
@@ -82,7 +82,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should cancel coroutine scope`() {
+    fun should_cancel_coroutine_scope() {
         //Given
         val job = Job()
         val scope = CoroutineScope(job)
@@ -98,7 +98,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should get scope's job`() {
+    fun should_get_scopes_job() {
         //Given
         val job = Job()
         val scope = CoroutineScope(job)
@@ -108,7 +108,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should verify if two contexts have the same dispatcher`(): Unit = runBlocking {
+    fun should_verify_if_two_contexts_have_the_same_dispatcher(): Unit = runBlocking {
         withContext(Dispatchers.Default) {
             coroutineContext.dispatcher shouldEqual Dispatchers.Default
         }
@@ -121,7 +121,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should get dispatcher of scope`() {
+    fun should_get_dispatcher_of_scope() {
         runBlocking {
             CoroutineScope(Dispatchers.Default).launch {
                 this.dispatcher shouldEqual Dispatchers.Default
@@ -133,7 +133,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should get dispatcher of context`() {
+    fun should_get_dispatcher_of_context() {
         runBlocking(Dispatchers.Default) {
             coroutineContext.dispatcher shouldEqual Dispatchers.Default
             withContext(Dispatchers.IO) {
@@ -143,7 +143,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should iterate over the emmited items of a channel`() {
+    fun should_iterate_over_the_emmited_items_of_a_channel() {
         runBlocking {
             val channel = Channel<Int>()
             val items = mutableListOf<Int>()
@@ -157,7 +157,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should create parallel pair`() {
+    fun should_create_parallel_pair() {
         runBlocking {
             val time = measureTimeMillis {
                 withContext(Dispatchers.Default) {
@@ -177,7 +177,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should create parallel triple`() {
+    fun should_create_parallel_triple() {
         runBlocking {
             val time = measureTimeMillis {
                 withContext(Dispatchers.Default) {
@@ -198,7 +198,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should run operations in parallel`() {
+    fun should_run_operations_in_parallel() {
         runBlocking {
             val delayedRun: (() -> Unit) -> suspend () -> Unit = {
                 {
@@ -246,7 +246,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should map collections in parallel`() {
+    fun should_map_collections_in_parallel() {
         runBlocking {
             val c1 = listOf(1, 2, 3)
             val r1 = c1.parallelMap { it * 10 }
@@ -265,7 +265,7 @@ class CoroutinesExtensionsKtTest {
     }
 
     @Test
-    fun `should filter a collection in parallel`() {
+    fun should_filter_a_collection_in_parallel() {
         runBlocking {
             val c1 = (1..1_000)
             val t = measureTimeMillis {

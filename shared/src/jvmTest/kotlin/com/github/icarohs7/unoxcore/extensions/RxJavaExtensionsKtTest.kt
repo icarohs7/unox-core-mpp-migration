@@ -14,7 +14,7 @@ import se.lovef.assert.v1.shouldContain
 
 class RxJavaExtensionsKtTest {
     @Test
-    fun `combine 2 flowables`() {
+    fun combine_2_flowables() {
         val f1 = Flowable.just(10)
         val f2 = Flowable.just(20)
         val comb = f1 + f2
@@ -29,7 +29,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `combine 3 flowables`() {
+    fun combine_3_flowables() {
         val f1 = Flowable.just("A")
         val f2 = Flowable.just("B")
         val f3 = Flowable.just("C")
@@ -39,7 +39,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `combine 4 flowables`() {
+    fun combine_4_flowables() {
         val f1 = Flowable.just(10L)
         val f2 = Flowable.just(20L)
         val f3 = Flowable.just(30L)
@@ -50,7 +50,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `combine 5 flowables`() {
+    fun combine_5_flowables() {
         val f1 = Flowable.just(1.60)
         val f2 = Flowable.just(2.70)
         val f3 = Flowable.just(3.80)
@@ -62,7 +62,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `combine 6 flowables`() {
+    fun combine_6_flowables() {
         val f1 = Flowable.just(true)
         val f2 = Flowable.just(false)
         val f3 = Flowable.just(10)
@@ -75,7 +75,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `should suspend map a flowable`() {
+    fun should_suspend_map_a_flowable() {
         val f1 = Flowable.just(10).suspendMap { it * 2 }
         testFlowable(f1, valueCount = 1, expectedEmissions = *arrayOf(20))
 
@@ -87,7 +87,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `should suspend filter a flowable`() {
+    fun should_suspend_filter_a_flowable() {
         val f1 = Flowable.just(1, 2, 3, 4, 5, 6).suspendFilter { it % 2 == 0 }
         testFlowable(f1, valueCount = 3, expectedEmissions = *arrayOf(2, 4, 6))
 
@@ -99,7 +99,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `should inner filter a flowable`() {
+    fun should_inner_filter_a_flowable() {
         val f1 = Flowable.just(listOf(1, 2, 3, 4, 5, 6))
         val r1 = f1.innerFilter { it % 2 == 0 }
         testFlowable(r1, 1, listOf(2, 4, 6))
@@ -110,7 +110,7 @@ class RxJavaExtensionsKtTest {
     }
 
     @Test
-    fun `should inner map a flowable`() {
+    fun should_inner_map_a_flowable() {
         val f1 = Flowable.just(listOf(1, 2, 3, 4, 5, 6))
         val r1 = f1.innerMap { it * it }
         testFlowable(r1, 1, listOf(1, 4, 9, 16, 25, 36))

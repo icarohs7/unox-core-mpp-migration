@@ -13,7 +13,7 @@ import se.lovef.assert.v1.shouldEqual
 @Config(application = TestApplication::class)
 class LifecycleOwnerExtensionsKtTest {
     @Test
-    fun `should add observer to lifecycle owner using dsl`() {
+    fun should_add_observer_to_lifecycle_owner_using_dsl() {
         val controller = Robolectric.buildActivity(AppCompatActivity::class.java)
         val activity = controller.get()
         var v = ""
