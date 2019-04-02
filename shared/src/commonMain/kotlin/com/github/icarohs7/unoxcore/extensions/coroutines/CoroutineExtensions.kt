@@ -1,10 +1,8 @@
 package com.github.icarohs7.unoxcore.extensions.coroutines
 
-import com.github.icarohs7.unoxcore.MPPMainDispatcher
 import com.github.icarohs7.unoxcore.UnoxCore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -18,7 +16,7 @@ import kotlin.coroutines.coroutineContext
 
 /**
  * Execute an operation in the current coroutine context if it's different from the [foregroundContext]
- * or switch to a background context default to [Dispatchers.Default] and execute the operation there,
+ * or switch to a background context default to [UnoxCore.backgroundDispatcher] and execute the operation there,
  * suspending until the operation is done
  *
  * @param backgroundContext The context that will be used if the coroutine is being executed on the foreground
@@ -26,7 +24,7 @@ import kotlin.coroutines.coroutineContext
  */
 suspend fun <T> onBackground(
         backgroundContext: CoroutineDispatcher = UnoxCore.backgroundDispatcher,
-        foregroundContext: CoroutineDispatcher = MPPMainDispatcher,
+        foregroundContext: CoroutineDispatcher = UnoxCore.foregroundDispatcher,
         block: suspend CoroutineScope.() -> T
 ): T {
     val runningOnUi = coroutineContext.dispatcher == foregroundContext.dispatcher
@@ -39,13 +37,13 @@ suspend fun <T> onBackground(
 
 /**
  * Execute an operation in the current coroutine context if it's the same as the [foregroundContext]
- * or switch to the foreground context default to [Dispatchers.MPPMainDispatcher] and execute the
+ * or switch to the foreground context default to [UnoxCore.foregroundDispatcher] and execute the
  * operation there, suspending until the operation is done
  *
  * @param foregroundContext The context in that the operation will be run
  */
 suspend fun <T> onForeground(
-        foregroundContext: CoroutineDispatcher = MPPMainDispatcher,
+        foregroundContext: CoroutineDispatcher = UnoxCore.foregroundDispatcher,
         block: suspend CoroutineScope.() -> T
 ): T {
     return when (coroutineContext.dispatcher == foregroundContext.dispatcher) {
