@@ -18,6 +18,70 @@ import kotlin.system.measureTimeMillis
 
 class CoroutinesExtensionsKtTest {
     @Test
+    fun `should run operations on background`(): Unit = runBlocking {
+        withContext(Dispatchers.Default) {
+            coroutineContext.dispatcher shouldEqual Dispatchers.Default
+
+            onBackground(Dispatchers.IO, Dispatchers.Default) {
+                coroutineContext.dispatcher shouldEqual Dispatchers.IO
+            }
+            Unit
+        }
+
+        withContext(Dispatchers.Default) {
+            coroutineContext.dispatcher shouldEqual Dispatchers.Default
+
+            onBackground(Dispatchers.Default, Dispatchers.IO) {
+                coroutineContext.dispatcher shouldEqual Dispatchers.Default
+            }
+            Unit
+        }
+
+        withContext(Dispatchers.IO) {
+            coroutineContext.dispatcher shouldEqual Dispatchers.IO
+
+            onBackground(Dispatchers.Default, Dispatchers.IO) {
+                coroutineContext.dispatcher shouldEqual Dispatchers.Default
+            }
+            Unit
+        }
+
+        Unit
+    }
+
+    @Test
+    fun `should run operations on foreground`(): Unit = runBlocking {
+        withContext(Dispatchers.Default) {
+            coroutineContext.dispatcher shouldEqual Dispatchers.Default
+
+            onForeground(Dispatchers.IO) {
+                coroutineContext.dispatcher shouldEqual Dispatchers.IO
+            }
+            Unit
+        }
+
+        withContext(Dispatchers.Default) {
+            coroutineContext.dispatcher shouldEqual Dispatchers.Default
+
+            onForeground(Dispatchers.Default) {
+                coroutineContext.dispatcher shouldEqual Dispatchers.Default
+            }
+            Unit
+        }
+
+        withContext(Dispatchers.IO) {
+            coroutineContext.dispatcher shouldEqual Dispatchers.IO
+
+            onForeground(Dispatchers.Default) {
+                coroutineContext.dispatcher shouldEqual Dispatchers.Default
+            }
+            Unit
+        }
+
+        Unit
+    }
+
+    @Test
     fun `should cancel coroutine scope`() {
         //Given
         val job = Job()
