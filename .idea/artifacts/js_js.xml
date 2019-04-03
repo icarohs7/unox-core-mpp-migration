@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="js-js">
+    <output-path>C:\Projetos\UNox\_staging\unox-core\js\build\libs</output-path>
+    <root id="archive" name="js-js.jar">
+      <element id="module-output" name="unox-core.js.jsMain" />
+    </root>
+  </artifact>
+</component>
