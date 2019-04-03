@@ -153,6 +153,8 @@ tasks {
                 android.sourceSets["main"].java.srcDirs,
                 "src/main/kotlin"
         ))
+        
         executionData("$buildDir/jacoco/testDebugUnitTest.exec")
+        executionData("$buildDir/jacoco/jvmTest.exec")
     }
 }
