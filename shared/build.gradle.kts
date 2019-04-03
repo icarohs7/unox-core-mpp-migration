@@ -125,7 +125,7 @@ tasks {
     }
 
     create<JacocoReport>("jacocoTestReport") {
-        dependsOn("testDebugUnitTest", "createDebugCoverageReport")
+        dependsOn("testDebugUnitTest", "check", "createDebugCoverageReport")
 
         this.group = "Reporting"
         this.description = "Generate Jacoco coverage reports for Debug build"
